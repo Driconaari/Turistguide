@@ -1,5 +1,3 @@
-// TouristService.java
-
 package tourism.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +29,21 @@ public class TouristService {
         touristRepository.addAttraction(attraction);
     }
 
+
     public void deleteAttraction(String name) {
+        // Perform error handling if attraction not found
         touristRepository.deleteAttraction(name);
     }
 
     public void updateAttraction(TouristAttraction updatedAttraction) {
         TouristAttraction existingAttraction = touristRepository.getAttractionByName(updatedAttraction.getName());
         if (existingAttraction != null) {
-            existingAttraction.setDescription((updatedAttraction.getDescription()));
+            existingAttraction.setDescription(updatedAttraction.getDescription());
             touristRepository.updateAttraction(existingAttraction);
+        } else {
+            // Handle case where attraction to update is not found
         }
     }
+
+
 }

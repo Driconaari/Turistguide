@@ -68,14 +68,15 @@ public class TouristRepository {
         return attractions;
     }
 
-    public String getTivoliDescrtiption() {
+    public String getTivoliDescription() {
         for (TouristAttraction attraction : attractions) {
-            if (attraction.getName().equals("Tivoli Gardens")) {
+            if ("Tivoli Gardens".equals(attraction.getName())) {
                 return attraction.getDescription();
             }
         }
         return ""; // Return an empty string if Tivoli Gardens is not found
     }
+
 
 
 }

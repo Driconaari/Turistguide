@@ -34,4 +34,12 @@ public class TouristService {
     public void deleteAttraction(String name) {
         touristRepository.deleteAttraction(name);
     }
+
+    public void updateAttraction(TouristAttraction updatedAttraction) {
+        TouristAttraction existingAttraction = touristRepository.getAttractionByName(updatedAttraction.getName());
+        if (existingAttraction != null) {
+            existingAttraction.setDescription((updatedAttraction.getDescription()));
+            touristRepository.updateAttraction(existingAttraction);
+        }
+    }
 }

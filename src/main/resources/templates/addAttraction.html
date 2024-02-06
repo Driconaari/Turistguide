@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Guide - Welcome</title>
+    <link rel="stylesheet" href="../static/styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+<header>
+    <h1>Welcome to the Tourist Guide</h1>
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#attractions">Featured Attractions</a></li>
+            <li><a href="#addAttraction">Add Attraction</a></li>
+            <li><a href="#endpoints">Endpoints</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="about">
+        <h2>About the Tourist Guide</h2>
+        <p>The Tourist Guide is a comprehensive resource for exploring various tourist attractions in Denmark. Whether you're interested in exploring the rich architectural heritage or experiencing the thrill of theme parks, the Tourist Guide has something for everyone.</p>
+    </section>
+    <section id="attractions">
+        <h2>Featured Attractions</h2>
+        <ul>
+            <!-- Loop through attractions and display each one -->
+            <li th:each="attraction : ${attractions}">
+                <h3 th:text="${attraction.name}"></h3>
+                <p th:text="${attraction.description}"></p>
+                <!-- Add button to delete attraction -->
+                <button onclick="deleteAttraction('${attraction.name}')">Delete</button>
+            </li>
+        </ul>
+    </section>
+    <form id="addAttractionForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <button type="submit">Add Attraction</button>
+    </form>
+
+    </section>
+    <section id="endpoints">
+        <h2>Endpoints</h2>
+        <ul>
+            <li><a href="http://localhost:8080/attractions" target="_blank">View All Attractions</a></li>
+            <li><a href="http://localhost:8080/attractions/add" target="_blank">Add Attraction</a></li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <p>Contact us: example@example.com</p>
+</footer>
+<script>
+    // Function to delete attraction
+    function deleteAttraction(name) {
+        fetch(`http://localhost:8080/attractions/delete/${name}`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert(`${name} attraction deleted successfully!`);
+                    // Refresh the page to reflect changes
+                    location.reload();
+                } else {
+                    alert(`Failed to delete ${name} attraction.`);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(`An error occurred while deleting ${name} attraction.`);
+            });
+    }
+
+    // Function to add attraction
+    function addAttraction(event) {
+        event.preventDefault();
+
+        const form = document.getElementById('attractionForm');
+        const formData = new FormData(form);
+
+        fetch('http://localhost:8080/attractions/add', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Attraction added successfully!');
+                    // Refresh the page to reflect changes
+                    location.reload();
+                } else {
+                    alert('Failed to add attraction.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while adding attraction.');
+            });
+    }
+</script>
+</body>
+</html>

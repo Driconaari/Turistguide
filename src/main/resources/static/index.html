@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Guide - Welcome</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+<header>
+    <h1>Welcome to the Tourist Guide</h1>
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#attractions">Featured Attractions</a></li>
+            <li><a href="#endpoints">Endpoints</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="about">
+        <h2>About the Tourist Guide</h2>
+        <p>The Tourist Guide is a comprehensive resource for exploring various tourist attractions in Denmark. Whether you're interested in exploring the rich architectural heritage or experiencing the thrill of theme parks, the Tourist Guide has something for everyone.</p>
+    </section>
+    <section id="attractions">
+        <h2>Featured Attractions</h2>
+        <!-- Include links to external sites for featured attractions -->
+        <ul>
+            <li><a href="#" target="_blank">Tivoli Gardens</a></li>
+            <li><a href="#" target="_blank">Bakken</a></li>
+            <li><a href="#" target="_blank">Legoland Billund</a></li>
+        </ul>
+    </section>
+    <section id="endpoints">
+        <h2>Endpoints</h2>
+        <ul>
+            <!-- Include links to your CRUD endpoints -->
+            <li><a href="http://localhost:8080/attractions" target="_blank">View All Attractions</a></li>
+            <li><a href="http://localhost:8080/attractions/tivoli" target="_blank">View Tivoli</a></li>
+            <li><a href="http://localhost:8080/attractions/delete/tivoli" target="_blank">Delete Tivoli</a></li>
+            <!-- You can include more links for other endpoints as needed -->
+        </ul>
+    </section>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tourist Attractions</title>
+    </head>
+    <body>
+    <h1>Tourist Attractions</h1>
+    <ul>
+        <li><a href="/attractions">View All Attractions</a></li>
+        <li><a href="/attractions/Tivoli%20Gardens">View Tivoli Gardens</a></li>
+        <li><a href="/attractions/delete/Bakken">Delete Bakken</a></li>
+    </ul>
+    <form action="/attractions/add" method="post">
+        <label for="name">Attraction Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <button type="submit">Add Attraction</button>
+    </form>
+    </body>
+    </html>
+
+</main>
+<footer>
+    <p>Contact us: example@example.com</p>
+</footer>
+<script>
+    // You can include JavaScript if needed
+</script>
+</body>
+</html>

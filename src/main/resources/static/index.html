@@ -60,13 +60,16 @@
         <li><a href="/attractions/Little % Mermaid">View The Little Mermaid</a></li>
         <li><a href="/attractions/delete/%name%">Delete Bakken</a></li>
     </ul>
-    <form action="/attractions/addAttraction" method="post">
-        <label for="name">Attraction Name:</label>
-        <input type="text" id="name" name="name">
-        <label for="description">Description:</label>
-        <textarea id="description" name="description"></textarea>
+    <form method="post" action="/attractions/submit_attraction">
+        <label for="attractionName">Attraction Name:</label>
+        <input type="text" id="attractionName" name="attractionName" required><br><br>
+
+        <label for="attractionDescription">Description:</label><br>
+        <textarea id="attractionDescription" name="attractionDescription" rows="4" cols="50" required></textarea><br><br>
+
         <button type="submit">Add Attraction</button>
     </form>
+
     </body>
     </html>
 

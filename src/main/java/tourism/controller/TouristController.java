@@ -115,26 +115,34 @@ public class TouristController {
         }
     }
 
+    @GetMapping("/attractions/submit_attraction")
+    public String showSubmitAttractionForm(Model model) {
+        // Create an empty TouristAttraction object to bind to the form
+        TouristAttraction newAttraction = new TouristAttraction();
 
-   /* @GetMapping("/tivoli")
-    public ModelAndView getTivoliHtml() throws IOException {
-        // Read the contents of the tivoli.html file from the resources folder
-        ClassPathResource resource = new ClassPathResource("static/tivoli.html");
-        byte[] fileBytes = StreamUtils.copyToByteArray(resource.getInputStream());
-        String tivoliHtml = new String(fileBytes, StandardCharsets.UTF_8);
+        // Add the newAttraction object to the model to be used in the form
+        model.addAttribute("newAttraction", newAttraction);
 
-        // Get the description from the TouristRepository
-        String description = touristRepository.getTivoliDescrtiption();
-
-        // Replace the placeholder in the HTML with the actual description
-        tivoliHtml = tivoliHtml.replace("{{ descriptionPlaceholder }}", description);
-
-        // Create a ModelAndView object with the view name and model attributes
-        ModelAndView modelAndView = new ModelAndView("tivoli");
-        modelAndView.addObject("tivoliHtml", tivoliHtml);
-
-        return modelAndView;
+        // Return the name of the HTML template for the form
+        return "submit_attraction_form";
     }
 
-    */
+
+    @PostMapping("/attractions/submit_attraction")
+    public String submitAttraction(@RequestParam("attractionName") String attractionName,
+                                   @RequestParam("attractionDescription") String attractionDescription) {
+        // Create a new TouristAttraction object with the provided name and description
+        TouristAttraction newAttraction = new TouristAttraction(attractionName, attractionDescription);
+
+        // Add the new attraction to the tourist repository
+        touristRepository.addAttraction(newAttraction);
+
+        // Redirect to the attractions page after submission
+        return "redirect:/attractions";
+    }
+
+
+
+
+
 }

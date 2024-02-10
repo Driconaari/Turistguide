@@ -8,13 +8,15 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-
 public class TouristRepository {
 
     private List<TouristAttraction> attractions = new ArrayList<>();
 
-
     public TouristRepository() {
+        addAttractions();
+    }
+
+    private void addAttractions() {
         attractions.add(new TouristAttraction("Tivoli Gardens", "Amusement park in Copenhagen city center"));
         attractions.add(new TouristAttraction("Bakken", "Amusement park near Copenhagen"));
         attractions.add(new TouristAttraction("Legoland Billund", "Theme park based on the Lego toy brand in Billund"));
@@ -36,7 +38,6 @@ public class TouristRepository {
         return null;
     }
 
-
     public void updateAttraction(TouristAttraction updatedAttraction) {
         for (int i = 0; i < attractions.size(); i++) {
             TouristAttraction existingAttraction = attractions.get(i);
@@ -45,7 +46,6 @@ public class TouristRepository {
                 attractions.set(i, existingAttraction);
                 break;
             }
-
         }
     }
 
@@ -61,7 +61,6 @@ public class TouristRepository {
                 iterator.remove();
             }
         }
-
     }
 
     public List<TouristAttraction> getAllAttractions() {
@@ -76,7 +75,4 @@ public class TouristRepository {
         }
         return ""; // Return an empty string if Tivoli Gardens is not found
     }
-
-
-
 }
